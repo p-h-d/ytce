@@ -1,7 +1,7 @@
 ytce
 ====
 
-指定したYouTube Liveのチャット欄から、指定したチャンネルによる書き込みを取得するCLIスクリプト。
+指定したYouTube Liveのチャット欄から、指定したチャンネルによる書き込みを抽出するCLIスクリプト。
 
 ## 必要なもの
 
@@ -61,6 +61,8 @@ pip install httplib2 oauth2client
 python ytce.py config.txt
 ```
 でプログラムが起動する。プロセスが生きている限り、取得した書き込みが`log_file`で指定したログファイルに延々と追記されていく。
+初回のみ、実行時にブラウザでOAuth認証画面に飛ばされるので、適当なアカウントを選んで認証する。
+これによりconfigファイル内の`credential_file`で指定したパスに認証用の.jsonファイルが生成され、次回からはOAuthの認証は必要なくなる。
 
 ## 既知の問題・リスク
 - `ytce.py`を実行中にLiveが開始した場合、一度`ytce.py`を再起動しないと反映されない。あくまで`ytce.py`が起動した際に"Connected"と表示されたliveしか見ない。
