@@ -4,9 +4,9 @@ ytce
 指定したYouTube Liveのチャット欄から、指定したチャンネルによる書き込みを抽出するCLIスクリプト。
 
 ## 必要なもの
-
 - Python 3.6.x + httplib2 + oauth2client
 - Google Cloud Platformのアカウント
+MacOS High Sierra + Python 3.6.4 + httplib2 0.11.3 + oauth2client 4.1.2で動作確認しています。
 
 ## 準備
 [ここ](https://blog.sky-net.pw/article/86)を参考にさせて頂きました。
@@ -72,6 +72,7 @@ python ytce.py config.txt
 TBA
 
 ## 改良案
+- pollingの時間間隔をいじれるようにする
 - 定期的に新しいliveが開始していないか確認する
 
 ## 作者
