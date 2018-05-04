@@ -2,7 +2,7 @@
 '''
 Created on 2018/05/04
 
-@author: snakagawa
+@author: p-h-d
 '''
 
 import os.path
@@ -15,6 +15,9 @@ import time
 import sys
 
 import argparse
+
+__version__ = "0.1"
+__author__ = "p-h-d"
 
 class Manager(object):
     
@@ -65,6 +68,8 @@ class Manager(object):
         self.http = http
         self.displayed_message_ids = []
         self.log_file = log_file
+        self.live_channel_keys = list(live_channel_ids.keys())
+        self.current_position = 0
     
     def log(self, string):
         '''
@@ -121,8 +126,26 @@ class Manager(object):
         
         # flush some of the displayed message ids to prevent the list from expanding forever
         if len(self.displayed_message_ids) > self.MAX_LOADED_MESSAGE:
-            self.displayed_message_ids = self.displayed_message_ids[self.DELETE_LOADED_MESSAGE:] 
+            self.displayed_message_ids = self.displayed_message_ids[self.DELETE_LOADED_MESSAGE:]     
+            
         
+        # check only one channel for new live
+        key = self.live_channel_keys[self.current_position]
+        channel_id = self.live_channel_ids[key]
+        try:
+            l = Live(channel_id, self.http)
+        except ValueError:
+            pass
+        else:
+            print("Connected: \"{0}\" by {1}".format(l.title, l.channeltitle))
+            self.lives[key] = l
+        
+        # if the current position exceeds the limit of available channel numbers, return to zero
+        self.current_position = self.current_position + 1
+        if self.current_position >= len(self.live_channel_keys):
+            self.current_position = 0
+        
+    
     def start(self, pollsec=1.0):
         
         print("Started retrieving chat data...")
@@ -211,14 +234,11 @@ class Live(object):
 
 if __name__ == '__main__':
     
-    parser = argparse.ArgumentParser(description="Print chat comments in specified lives made by specified channels. ")
+    parser = argparse.ArgumentParser(description="Extract chat comments in specified lives made by specified channels. ")
     parser.add_argument("config_file", metavar="config_file", nargs=1, action="store")
     
     args = parser.parse_args()
     
     m = Manager(args.config_file[0])
     
-    if not m.lives:
-        sys.stderr.write("No one's on live now. \n")
-    else:
-        m.start()
+    m.start()
