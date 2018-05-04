@@ -6,6 +6,7 @@ ytce
 ## 必要なもの
 - Python 3.6.x + httplib2 + oauth2client
 - Google Cloud Platformのアカウント
+
 MacOS High Sierra + Python 3.6.4 + httplib2 0.11.3 + oauth2client 4.1.2で動作確認しています。
 
 ## 準備
