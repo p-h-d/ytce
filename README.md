@@ -5,9 +5,7 @@ ytce
 
 ## 必要なもの
 
-- Python 3.6.x
-- httplib2
-- oauth2client
+- Python 3.6.x + httplib2 + oauth2client
 - Google Cloud Platformのアカウント
 
 ## 準備
@@ -77,5 +75,4 @@ TBA
 - 定期的に新しいliveが開始していないか確認する
 
 ## 作者
-
-p-h-d
+[p-h-d](https://twitter.com/phdofeng)
