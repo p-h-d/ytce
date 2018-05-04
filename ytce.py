@@ -218,4 +218,7 @@ if __name__ == '__main__':
     
     m = Manager(args.config_file[0])
     
-    m.start()
+    if not m.lives:
+        sys.stderr.write("No one's on live now. \n")
+    else:
+        m.start()
