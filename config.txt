@@ -22,7 +22,7 @@
         "yoko": "",
         "iwanaga": "UCGCb4Dts1uYtciya3wvd6dg"
     },
-    "api_key_file": "client_secret_620891746670-605q61f6b8f0gc7ca5dd0err76dq46lp.apps.googleusercontent.com.json",
+    "api_key_file": "",
     "credentials_file": "credentials.json",
     "author_channel_ids": {
         "mito": "UCD-miitqNY3nyukJ4Fnf4_A",
